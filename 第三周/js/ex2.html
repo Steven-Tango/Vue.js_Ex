@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			ul li a{
+				text-decoration: none;
+				color: red;
+				display: block;
+				width: 230px;
+				height: 3.75rem;
+			}
+			ul li a:hover{
+				background-color: darkgrey;
+			}
+			ul li{
+				list-style: none;
+				line-height: 60px;
+			}
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" v-cloak>
+		<ul>
+			<li><a href="#"><span>[特惠]</span>{{title1 | subStr}}</a></li>
+			<li><a href="#"><span>[特惠]</span>{{title2 | subStr}}</a></li>
+			<li><a href="#"><span>[特惠]</span>{{title3 | subStr}}</a></li>
+			<li><a href="#"><span>[特惠]</span>{{title4 | subStr}}</a></li>
+			<li><a href="#"><span>[特惠]</span>{{title5 | subStr}}</a></li>
+		</ul>
+		</div>
+		<script type="text/javascript">
+			let demo = new Vue(
+				{
+					el:'#box',
+					data:{
+						title1:'商品爆品1分秒杀',
+						title2:'商城与长春市签署战略合作协议',
+						title3:'洋河年末大促，低至两件五折',
+						title4:'华北、华中部分地区配送延迟',
+						title5:'家电狂欢千亿礼券 买1送1'
+					},
+					filters:{
+						subStr:function(value){
+							if(value.length>10){
+								return value.substr(0,10)+".....";
+							}else{
+								return value;
+							}
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="firstname" />
+			<input type="text" v-model="lastname" />
+			<input type="text" v-model="fullname" />
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					firstname: 'T',
+					lastname: 'A'
+				},
+				computed: {
+					fullname: {
+						get: function() {
+							return this.firstname + ' ' + this.lastname;
+						},
+						set: function(newValue) {
+							var names = newValue.split(' ');
+							this.firstname = names[0];
+							this.lastname = names[names.length - 1];
+						}
+					}
+				}
+			});
+			console.log(app.fullname);
+			app.fullname = "T J"
+		</script>
+	</body>
+</html>

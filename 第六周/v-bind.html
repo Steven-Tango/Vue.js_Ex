@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 微软雅黑;
+        }
+        .item{
+            width: 350px;
+            height: 100px;
+            line-height: 100px;
+            border-bottom:1px solid #999;
+        }
+        .item img{
+            width: 100px;
+            float: left;
+        }
+        .active{
+            height: 100px;
+            line-height: 100px;
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ex">
+        <div>
+            <div class="item" v-for="book in books">
+                <img v-bind:src="book.img">
+                <span v-bind:class="{active:book.active}">{{book.bookname}}</span>
+            </div>
+        </div>
+    </div>
+    <script>
+      var ex = new Vue(
+          {
+              el:'#ex',
+              data:{
+                  books:[
+                      {bookname:'零基础学JavaScript',img:'img/javascript.png',active:true},
+                      {bookname:'零基础学HTML5+CSS3',img:'img/htmlcss.png',active:false},
+                      {bookname:'Java精彩编程200例',img:'img/java200.png',active:false},
+                      {bookname:'HTML5+CSS3精彩编程200例',img:'img/htmlcss200.png',active:true}
+                  ]
+              }
+          }
+      );
+    </script>
+</body>
+
+</html>

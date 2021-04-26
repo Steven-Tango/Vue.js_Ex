@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>绑定内联样式</title>
+    <style>
+       /*  .line{
+            text-decoration: line-through;
+        }
+        .size{
+            font-size: 20px;
+        } */
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div :style="{fontWeight:weight,'font-size':fontSize+'px'}">Vue.js样式绑定</div>
+    </div>
+    <script>
+        new Vue(
+            {
+                el:'#app',
+                data:{
+                    weight:'bold',
+                    fontSize:30
+                }
+            }
+        )
+    </script>
+</body>
+</html>

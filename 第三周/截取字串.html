@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+	<div id="box">
+		<p>{{message | spilc}}</p>
+	</div>
+	<script type="text/javascript">
+		new Vue(
+			{
+				el:'#box',
+				data:{
+					message:'每天编程一小时大型IT公益活动'
+				},
+				filters:{
+					spilc:function(value){
+						if(value.length>9){
+							return value.substr(0,9)+"........";
+						}else{
+							return value;
+						}
+					}
+				}
+			}
+		);
+	</script>
+	</body>
+</html>

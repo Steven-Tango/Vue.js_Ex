@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="ex">
+			<h1>Name:{{fullname}}</h1>
+		</div>
+		<script type="text/javascript">
+			var demo=new Vue(
+				{
+					el:'#ex',
+					data:{
+						firstname:'Mike',
+						lastname:'Zulu'
+					},
+					computed:{
+						fullname:{
+							/* getter方 */
+							get:function(){
+								return this.firstname + ' ' +this.lastname;
+							},
+							/* setter方 */
+							set:function(value){
+								let names = value.split(' ');
+								this.firstname = names[0];
+								this.lastname = names[names.length-1];
+							}
+						}
+					}
+				}
+			);
+			document.write("oldname:"+demo.fullname);
+			demo.fullname="TANGO_TANGJIE";
+		</script>
+	</body>
+</html>

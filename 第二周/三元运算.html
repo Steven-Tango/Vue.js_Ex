@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			{{number/10}}<br>
+			{{boo?'Ture':'False'}}<br>
+			{{str.split(',').reverse().join(',')}}
+		</div>
+		<script type="text/javascript">
+			new Vue(
+				{
+					el:'#box',
+					data:{
+						number:10,
+						boo:true,
+						str:'I Love Vue.js,because it make me feel happy'
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

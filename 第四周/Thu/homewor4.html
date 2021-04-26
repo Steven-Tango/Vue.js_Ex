@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+		
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="ex" v-cloak>
+			￥:<input type="number" v-model="rmb" />
+			$:<input type="number" v-model="dollar" />
+			{{rmb}}人民币={{dollar | formatNum}}美元
+		</div>
+		<script type="text/javascript">
+			var ex = new  Vue(
+				{
+					el:'#ex',
+					data:{
+						rate:6.8,
+						rmb:0,
+						dollar:0
+					},
+					watch:{
+						rmb:function(val){
+							this.dollar = val / this.rate;
+						},
+						dollar:function(val){
+							this.rmb = val * this.rate;
+						}
+					},
+					filters:{
+						formatNum:function(value){
+							return value.toFixed(2);
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

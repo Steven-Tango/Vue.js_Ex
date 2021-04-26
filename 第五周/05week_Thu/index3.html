@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .line{
+            text-decoration: line-through;
+        }
+        .size{
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <div v-bind:class="[{line:isLine},sizeClass]">Vue.js样式绑定</div>
+    </div>
+    <script>
+        var app=new Vue(
+            {
+                el:'#box',
+                data:{
+                    isLine:true,
+                    sizeClass:'size'
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

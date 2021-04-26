@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>作业</title>
+		<style type="text/css">
+				body {
+							font-family: '微软雅黑';
+							font-size: 0.875rem;
+						}
+			
+						.title {
+							background-color: #f6f6f6;
+							font-size: 1.125rem;
+						}
+			
+						.title,
+						.content {
+							width: 500px;
+							height: 2.25rem;
+							line-height: 2.25rem;
+							border: 1px solid #DDDDDD;
+						}
+			
+						.title:not(:first-child),
+						.content {
+							border-top: none;
+						}
+			
+						.title div {
+							width: 6.25rem;
+							text-align: center;
+							float: left;
+						}
+			
+						.content {
+							clear: both;
+						}
+			
+						.content div {
+							width: 100px;
+							text-align: center;
+							float: left;
+						}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="ex">
+			<div class="title">
+				<div>姓名</div>
+				<div>月度收入</div>
+				<div>专项扣除</div>
+				<div>个税</div>
+				<div>工资</div>
+			</div>
+			<div class="content" v-for="(value,index) in staff">
+				<div>{{value.name}}</div>
+				<div>{{value.income}}</div>
+				<div>{{insurance}}</div>
+				<div>{{wages[index]}}</div>
+				<div>{{value.income-insurance-wages[index]}}</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#ex',
+				data: {
+					insurance: 1000,
+					threshold: 5000, //个税起征点
+					tax: 0.03, //税率
+					staff: [
+						{name: '张无忌',income: 6600},
+						{name:'令狐冲',income:8000},
+						{name:'韦小宝',income:7000}
+						]
+				},
+				computed:{
+					wages:function(){
+						var t=this;//t指向Vue实例vm
+						var taxArr=[];
+						this.staff.forEach(function(s){
+							taxArr.push((s.income-t.threshold-t.insurance)*t.tax);
+						});
+						return taxArr;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

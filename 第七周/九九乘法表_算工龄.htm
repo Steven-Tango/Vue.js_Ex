@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="ex">
+        <div v-for="n in 5">员工第{{n}}年工龄为{{n*salary}}</div>
+    </div>
+    <script>
+        new Vue({
+            el:'#ex',
+            data:{
+                salary:30
+            }
+        })
+    </script>
+
+
+    <div id="app">
+        <div v-for="n in 9">
+            <span v-for="m in n">
+                {{m}}*{{n}}={{m*n}}
+            </span> 
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

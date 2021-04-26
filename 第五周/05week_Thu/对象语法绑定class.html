@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>v-bind绑定class</title>
+    <style>
+        .static {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .active {
+            color: red;
+        }
+
+        .text-denger {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>绑定class属性,采用对象语法</h1>
+    <div id="app">
+        <div class="static" :class="{active:isAvtive,'text-denger':haserror}">
+            Welcome to nemotec!!内联对象样式
+        </div>
+        <div :class="classobj">
+            Welcome to nemotec!!表达式
+        </div>
+        <div :class="computedclass">
+            Welcome to nemotec!!计算属性方式
+        </div>
+    </div>
+    <script>
+        new Vue(
+            {
+                el: '#app',
+                data: {
+                    isAvtive: true,
+                    haserror: false,
+                    classobj: {
+                        active: true,
+                        'text-denger': false
+                    }
+                },
+                computed: {
+                    computedclass: function () {
+                        return {
+                            active: this.isAvtive && !this.haserror,
+                            'text-denger': true
+                        }
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-show="ok">v-show控制display属性</p>
+        <button v-on:click="toggle()">toggle</button>
+        <p>ok:{{ok}}</p>
+    </div>
+    <script>
+        new Vue(
+            {
+                el:'#app',
+                data:{
+                    ok:true
+                },
+                methods:{
+                    toggle:function(){
+                        this.ok=!this.ok;
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

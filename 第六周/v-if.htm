@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>V-if练习</title>
+</head>
+
+<body>
+    <div id="ex">
+        <p>{{a}}</p>
+        <p>{{b}}</p>
+        <p v-if="a<b">a小于b</p>
+        <p v-else-if="a>b">a大于b</p>
+        <p v-else="a=b">a等于b</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#ex',
+            data: {
+                a: 200,
+                b: 200
+            }
+        })
+    </script>
+</body>
+
+</html>

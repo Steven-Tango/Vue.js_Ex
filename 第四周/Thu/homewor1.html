@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>图书</h2>
+			<p>您购买了{{book.name}}总共{{book.count}}本===￥{{book.price}}</p>
+			<p>总价:{{totalprice}}</p>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue(
+				{
+					el:'#app',
+					data:{
+						book:{
+							id:1,
+							price:10,
+							name:'Vue入门',
+							count:2
+							},
+							discount:0.8,
+							deliver:8
+						
+					},
+					computed:{
+						totalprice:function(){
+							return this.book.price * this.book.count * this.discount + this.deliver;
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

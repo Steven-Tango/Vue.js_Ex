@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			button {
+				border: none;
+				width: 7.5rem;
+				height: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<p>{{mess}}</p>
+			<button type="button" onclick="app.mess='乐美欢迎你!未来的工程师.';"
+				style="background-color: rgba(233,133,211,0.1); border-radius: 20px; border: none;">更新</button>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue(
+				{
+					el: '#app',
+					data: {
+						mess: 'Hello Vue.js!'
+					},
+					created: function () {
+						console.log("mess is :" + this.mess);
+					},
+					mounted: function () {
+						console.log("一挂载到DOM页面上就调用");
+					},
+					updated: function () {
+						console.log("以更新DOM");
+					}
+				}
+			);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			<h1>Totalprice:{{totalprice}}</h1>
+		</div>
+		<script type="text/javascript">
+			var box=new Vue(
+				{
+					el:'#box',
+					data:{
+						pakpage1:
+						[
+							{name:'iphone',price:2999,count:4},
+							{name:'huawei',price:9991,count:3}
+						],
+						pakpage2:
+						[
+							{name:'Boeing777',price:2231244312,count:1},
+							{name:'AirBus340',price:5334532423,count:1}
+						]
+					},
+					computed:{
+						totalprice:function(){
+							var totalprice=0;
+							for(var i =0;i<this.pakpage1.length;i++){
+								totalprice+=this.pakpage1[i].price * this.pakpage1[i].count;
+							}
+							for(var i =0;i<this.pakpage2.length;i++){
+								totalprice+=this.pakpage2[i].price * this.pakpage2[i].count;
+							}
+							return totalprice;
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

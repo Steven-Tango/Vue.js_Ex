@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="ex">
+        <div v-bind:style="[baseStyle,fontStyle,styleRadius]">
+            <h4>枫桥夜书</h4>
+            <p>月落乌啼霜满天,<br>
+                江枫渔火对愁眠,<br>
+                姑苏城外寒山寺,<br>
+                夜半钟声到客船.<br>
+            </p>
+        </div>
+
+    </div>
+    <script>
+        var vm = new Vue(
+            {
+                el: '#ex',
+                data: {
+                    width: 400,
+                    margin: '10px auto',
+                    padding: 30,
+                    bgcolor: 'lightblue',
+                    family: "华文楷体",
+                    fontSize: 36,
+                    color: 'green',
+                    align: 'center',
+                    border: '1px solid #cccccc',
+                    boxShadow: '3px 3px 6px #999999',
+                    mode: 'vertical-rl'
+                },
+                computed: {
+                    baseStyle: function () {
+                        return {
+                            width: this.width + 'px',
+                            margin: this.margin,
+                            padding: this.padding + 'px',
+                            'background-color': this.bgcolor
+                        }
+                    },
+                    fontStyle: function () {
+                        return {
+                            'font-family': this.family,
+                            fontSize: this.fontSize + 'px',
+                            color: this.color,
+                            'text-align': this.align
+                        }
+                    },
+                    styleRadius: function () {
+                        return {
+                            border: this.border,
+                            'box-shadow': this.boxShadow,
+                            'writing-mode': this.mode
+                        }
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

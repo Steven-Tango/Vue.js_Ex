@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>99乘法表</title>
+    <style>
+        span {
+            color: green;
+            font-size: 20px;
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <div v-for=" n in 9">
+            <span v-for="m in n">
+                {{m}}*{{n}}={{m*n}}
+            </span>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '.demo'
+        })
+    </script>
+</body>
+
+</html>

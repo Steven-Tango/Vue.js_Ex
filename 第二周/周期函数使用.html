@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>周期函数使用</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		</div>
+		<script type="text/javascript">
+			new Vue(
+				{
+					el:'#app',
+					data:{
+						a:1
+					},
+					created:function(){
+						console.log(this.a);
+						console.log(this.$el);
+					},
+					mounted:function(){
+						console.log(this.$el);
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

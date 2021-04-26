@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>电影票房排行榜</title>
+    <style>
+        body {
+            font-size: 14px;
+            font-family: 微软雅黑;
+        }
+        
+        .title {
+            background: #f6f6ff;
+            font-size: 18px;
+        }
+        
+        .content:nth-child(odd) {
+            background: #bfa;
+        }
+        
+        .title,
+        .content {
+            width: 430px;
+            height: 36px;
+            line-height: 36px;
+            border: 1px solid #ddd;
+        }
+        
+        .title,
+        .content:not(:last-child) {
+            border-bottom: none;
+        }
+        
+        .title div {
+            text-align: center;
+            float: left;
+        }
+        
+        .title .col-1,
+        .content .col-1 {
+            width: 80px;
+        }
+        
+        .title .col-2,
+        .content .col-2 {
+            width: 260px;
+        }
+        
+        .content {
+            clear: both;
+        }
+        
+        .content div {
+            text-align: center;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="title">
+            <div class="col-1">排名</div>
+            <div class="col-2">电影名称</div>
+            <div class="col-1">票房</div>
+        </div>
+        <div class="content" v-for="(value,index) in movie">
+            <div class="col-1">{{index +1}}</div>
+            <div class="col-2">{{value.name}}</div>
+            <div class="col-1">{{value.boxoffice}}亿</div>
+        </div>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: '#box',
+            data: {
+                movie: [{
+                    name: '西虹柿首富',
+                    boxoffice: 25.4
+                }, {
+                    name: '毒液，致命守护者',
+                    boxoffice: 18.7
+                }, {
+                    name: '我不是药神',
+                    boxoffice: 30.9
+                }, {
+                    name: '红海行动',
+                    boxoffice: 36.6
+                }, {
+                    name: '侏罗纪世界2',
+                    boxoffice: 16.9
+                }, {
+                    name: '复仇者联盟3:无限战争',
+                    boxoffice: 23.9
+                }, {
+                    name: '头号玩家',
+                    boxoffice: 13.9
+                }, {
+                    name: '唐人街探案3',
+                    boxoffice: 33.9
+                }, {
+                    name: '捉妖记2',
+                    boxoffice: 22.3
+                }, {
+                    name: '海王',
+                    boxoffice: 19.5
+                }]
+            }
+        })
+        demo.movie.sort(function(a, b) {
+            var x = a.boxoffice;
+            var y = b.boxoffice;
+            return x < y ? 1 : -1;
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>pre编译</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app1">
+			<p v-pre> {{这里面的内容不会被编译}} {{date}}</p>
+			{{date}}
+		</div>
+		<script type="text/javascript">
+			var a = new Vue({
+				el: '#app1',
+				data: {
+					date: '这里的内容已经被编译'
+				}
+			})
+		</script>
+	</body>
+</html>

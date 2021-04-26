@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+       <span v-show="computedSeen">
+           v-show:用css(display:none)来显示or隐藏.这不会修改DOM
+       </span>No Show
+       <hr>
+       <span v-if="seen">
+           鼠标悬停几秒钟查看此处动态绑定的提示信息！这回修改DOM
+       </span>
+       <h1 v-else>No Seen</h1>
+       <template v-if="seen">
+           <h1>多标记if</h1>
+           <p>段落1</p>
+           <p>段落2</p>
+       </template>
+   </div>
+   <button onclick="a.seen=!a.seen;">点击切换</button>
+   <script>
+       var a=new Vue(
+           {
+               el:"#app",
+               data:{
+                   seen:true
+               },
+               computed:{
+                computedSeen:function(){
+                    return !this.seen;
+                }
+               }
+           }
+       )
+   </script>
+</body>
+
+</html>

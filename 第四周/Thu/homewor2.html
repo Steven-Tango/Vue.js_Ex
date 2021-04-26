@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			body {
+				font-family: '微软雅黑';
+				font-size: 0.875rem;
+			}
+
+			.title {
+				background-color: #f6f6f6;
+				font-size: 1.125rem;
+			}
+
+			.title,
+			.content {
+				width: 400px;
+				height: 2.25rem;
+				line-height: 2.25rem;
+				border: 1px solid #DDDDDD;
+			}
+
+			.title:not(:first-child),
+			.content {
+				border-top: none;
+			}
+
+			.title div {
+				width: 6.25rem;
+				text-align: center;
+				float: left;
+			}
+
+			.content {
+				clear: both;
+			}
+
+			.content div {
+				width: 100px;
+				text-align: center;
+				float: left;
+			}
+
+			p {
+				width: 23.75rem;
+				text-align: right;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="ex">
+			<div class="title">
+				<div>商品名称</div>
+				<div>单价</div>
+				<div>数量</div>
+				<div>金额</div>
+			</div>
+			<div class="content" v-for="value in shop">
+				<div>{{value.name}}</div>
+				<div>{{value.price | twoDecimal}}</div>
+				<div>{{value.count}}</div>
+				<div>{{value.price * value.count | twoDecimal}}</div>
+			</div>
+			<p>合计:{{totalprice | formatPrice("￥")}}</p>
+		</div>
+		<script type="text/javascript">
+			var ex = new Vue({
+				el: '#ex',
+				data: {
+					shop: [{
+							name: 'OPPO R15',
+							price: 2999,
+							count: 3
+						},
+						{
+							name: '华为P20',
+							price: 3799,
+							count: 2
+						}
+					]
+				},
+				computed: {
+					totalprice: function() {
+						var total = 0;
+						this.shop.forEach(function(s) {
+							total += s.prcie * s.count;
+						});
+						return total;
+					}
+				},
+				filters: {
+					twoDecimal: function(value) {
+						return value.toFixed(2);
+					},
+					formatPrice: function(value, symbol) {
+						return symbol + value.toFixed(2);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

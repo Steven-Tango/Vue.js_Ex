@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.active{
+				font-size: 24px;
+				color: #4CFA61;
+			}
+			.text-fail{
+				background-color: #f7f5d7;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div :class="classes">
+				我有动态CSS
+			</div>
+		</div>
+		<script type="text/javascript">
+			new Vue(
+				{
+					el:'#app',
+					data:{
+						isActice:true,
+						error:null,
+						errors:{type:"fail"}
+					},
+					computed:{
+						classes:function(){
+							return {
+								active:this.isActice && !this.error,
+								'text-fail': this.errors && this.errors.type === 'fail'
+							}
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

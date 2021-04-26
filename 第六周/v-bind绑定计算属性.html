@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>v-bind绑定计算属性</title>
+    <style>
+        .btn{
+            border: 1px solid #ccc;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-l{
+            width: 120px;
+            height: 48px;
+            font-size: 16px;
+            background-color: red;
+        }
+        .btm-m{
+            width: 100px;
+            height: 32px; 
+            font-size: 14px;
+            background-color:green;
+        }
+        .btn-s{
+            width: 90px;
+            height: 20px;
+            font-size: 12px;
+            background-color: blue;
+        }
+        .btn-disabled{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="ex">
+        <button :class="classes">我是一个按钮</button>
+        <br><br>
+        <button @click="changeclass(1)">大按钮</button>
+        <button @click="changeclass(2)">中按钮</button>
+        <button @click="changeclass(3)">小按钮</button>
+    </div>
+    <script>
+        let vm = new Vue(
+            {
+                el:'#ex',
+                data:{
+                    size:'',
+                    disabled:true
+                },
+                computed:{
+                    classes:function(){
+                        return[
+                            "btn",
+                            {['btn-'+this.size]:this.size!="",['btn-disabled']:this.disabled}
+                        ]
+                    } 
+                },
+                methods: {
+                    changeclass:function(type){
+                        if(type===1){
+                            this.size='l';
+                        }else if(type===2){
+                            this.size='m';
+                        }else if(type===3){
+                            this.size='s';
+                        }
+                        this.disabled=false;
+                    }
+                },
+            }
+        )
+    </script>
+</body>
+</html>

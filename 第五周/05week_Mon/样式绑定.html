@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.default{
+				text-decoration: underline;
+			}
+			.size{
+				font-size: 2.0625rem;
+				background-color: #4cfa61;
+			}
+			.color{
+				color: #DDDDDD;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			<div class="default" :class="classObject">
+				Vue.js样式绑定
+			</div>
+		</div>
+		<script type="text/javascript">
+			new Vue(
+				{
+					el:'#box',
+					data:{
+						classObject:{
+							color:true,
+							size:true
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

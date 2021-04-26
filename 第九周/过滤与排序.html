@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>过滤排序</title>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li>下面是过滤后的书名</li>
+            <template v-for="book in filterbooks">
+                <li>书名:{{book.name}}</li>
+                <li>作者:{{book.author}}</li>
+            </template><br>
+            <li>下面是排序后的书名</li>
+            <template v-for="book in sortedbooks">
+                <li>书名:{{book.name}}</li>
+                <li>作者:{{book.author}}</li>
+                </template>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                books: [{
+                    name: 'Vue.js实战',
+                    author: '梁昊'
+                }, {
+                    name: 'javaScript语言精粹',
+                    author: '张三'
+                }, {
+                    name: 'javaScript高级程序设计',
+                    author: 'Tag'
+                }]
+            },
+            computed: {
+                filterbooks: function() {
+                    return this.books.filter(function(book) {
+                        return book.name.match(/javaScript/)
+                    });
+                },
+                sortedbooks: function() {
+                    return this.books.sort(function(a, b) {
+                        return b.name.length - a.name.length;
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

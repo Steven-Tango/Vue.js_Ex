@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>绑定行内样式,采用对象语法</h1>
+   <div id="app">
+       <div :style="{color:activecolor,fontSize:fontsize+'px'}"> 
+           welcome to nemotec!!!对象语法
+        </div>
+        <div :style="styleobj">
+            welcome to nemotec!!!对象语法(非内联)
+        </div>
+   </div> 
+   <script>
+       new Vue(
+           {
+               el:'#app',
+               data:{
+                activecolor:'red',
+                fontsize:22,
+                styleobj:{
+                    color:'blue',
+                    'font-size':'35px'
+                }
+               }
+           }
+       )
+   </script>
+</body>
+</html> 

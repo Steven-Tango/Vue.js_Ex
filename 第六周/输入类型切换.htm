@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="ex">
+        <template v-if="type === 'name'">
+            <label>用户名:</label>
+            <input type="text" placeholder="请输入用户名" key="name_input">
+        </template>
+        <template v-else>
+            <label>邮箱:</label>
+            <input type="text" placeholder="请输入邮箱" key="email_input">
+        </template>
+        <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+    <script>
+        new Vue(
+            {
+                el:'#ex',
+                data:{
+                    type:'name'
+                },
+                methods: {
+                    handleToggleClick:function(){
+                        this.type = this.type ==='name'? 'email':'name';
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

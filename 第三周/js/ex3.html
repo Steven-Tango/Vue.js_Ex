@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			<span>{{str | lowercase | firstlowercase}}</span>
+		</div>
+		<script type="text/javascript">
+			var demo=new Vue(
+				{
+					el:'#box',
+					data:{
+						str:'HTML+CSS+JavaScript'
+					},
+					filters:{
+						lowercase:function(value){
+							return value.toLowerCase();
+						},
+						firstlowercase:function(value){
+							return value.charAt(0).toUpperCase()+value.substr(1);
+						}
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

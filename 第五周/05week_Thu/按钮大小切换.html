@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .btn{
+            border: 1px solid #ccc;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-l{
+            width: 120px;
+            height: 48px;
+            font-size: 17px;
+            background-color: red;
+        }
+        .btn-disabled{
+            background-color: #ccc;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button :class="classes">   我是一个按钮  </button><br><br>
+        <button :class="btn-b"> 大按钮</button>
+        <button :class="btn-m"> 中按钮</button>
+        <button :class="btn-s"> 小按钮</button>
+    </div>
+    <script>
+        new Vue(
+            {
+                el:'#app',
+                data:{
+                    size:'l',
+                    disabled:true
+                },
+                computed:{
+                    classes:function(){
+                        return [
+                            'btn',
+                            {
+                                ['btn-'+this.size]: this.size!='',
+                                ['btn-disabled']: this.disabled
+                            }
+                        ];
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

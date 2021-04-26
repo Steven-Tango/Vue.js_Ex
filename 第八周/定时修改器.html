@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>v-for定时修改数据</title>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <template v-for="item in grolist">
+                <li>{{item.text}}</li>
+                <p>备注说明:{{item.memo}}</p>
+            </template>
+        </ol>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: '#app',
+            data: {
+                grolist: [{
+                    text: '蔬菜',
+                    memo: '蔬菜shige好东西'
+                }, {
+                    text: '奶酪',
+                    memo: '奶酪shige好东西'
+                }, {
+                    text: '水果',
+                    memo: '水果shige好东西'
+                }]
+            }
+        })
+        console.log(demo.grolist);
+        setTimeout('demo.grolist=[{text:"vegetable"},{text:"milk"}]', 10000)
+        console.log(demo.$el === document.getElementById('app'));
+    </script>
+</body>
+
+</html>

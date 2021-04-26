@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app1">
+				app1的值是:{{text}}
+		</div>
+		<div id="app2">
+				app2的值是:{{reversedText}}
+		</div>
+		s<script type="text/javascript">
+			var app1 = new Vue(
+				{
+					el:'#app1',
+					data:{
+						text:'123,456'
+					}
+				}
+			);
+			
+			
+			var app2 = new  Vue(
+				{
+					el:'#app2',
+					computed:{
+						reversedText:function(){
+							return app1.text.split(",").reverse().join(",");
+						}
+					}
+				}
+			);
+			/* app1.text="567,890"; */
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for__遍历对象</title>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="(value,key) in object">{{key}}:{{value}}</li>
+        </ul>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: '#box',
+            data: {
+                object: {
+                    name: '孙悟空',
+                    gender: '男',
+                    age: '未知 '
+                }
+            }
+        });
+        /*  Vue.set(demo.object, 'hobby', '打妖怪'); */
+        demo.object = Object.assign({}, demo.object, {
+            hobby: '打妖怪',
+            addresss: '花果山'
+        });
+    </script>
+</body>
+
+</html>

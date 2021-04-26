@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="box">
+			<a :href="URL">链接</a>
+			<img width="300px" :src="SRC" >
+		</div>
+		<script type="text/javascript">
+			new Vue(
+				{
+					el:'#box',
+					data:{
+						URL:'http://cca.xflysim.cn',
+						SRC:'img/black.png'
+					}
+				}
+			);
+		</script>
+	</body>
+</html>

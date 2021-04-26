@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="l3">
+        <p v-if='(year%4==0 && year%100!=0) || year%400==0'>
+            {{show(29)}}
+        </p>
+        <p v-else>
+            {{show(28)}}
+        </p>
+    </div>
+    <script>
+        new Vue(
+            {
+                el:'#l3',
+                data:{
+                    year:2016
+                },
+                methods: {
+                    show:function(days){
+                        alert(this.year+"年2月有"+days+"天");
+                    }
+                },
+            }
+        )
+    </script>
+</body>
+</html>

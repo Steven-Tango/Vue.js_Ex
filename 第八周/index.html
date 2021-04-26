@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title></title>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <template v-for="item in items">
+                <li>书名:{{item.name}}</li>
+                <li>作者 :{{item.autho}}</li>
+            </template>
+        </ul>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: '#box',
+            data: {
+                items: [{
+                    name: '李白'
+                }, {
+                    name: '杜牧'
+                }, {
+                    name: '白居易'
+                }, {
+                    name: '苏轼'
+                }, {
+                    name: 'javaScript基础教程',
+                    autho: 'Tango'
+                }, {
+                    name: 'javaScript高级程序设计',
+                    autho: 'Nov'
+                }]
+            }
+        });
+        /*   demo.items.push({
+              name: 'Tango'
+          }); */
+        /* demo.items = demo.items.slice(1); */
+        /* Vue.set(demo.items, 1, {
+            name: '孟浩然'
+        });
+        demo.$set(demo.items, 3, {
+            name: '李清照'
+        }); */
+        /*  demo.items.splice(3); */
+        demo.items = demo.items.filter(function(item) {
+            return item.name.match(/javaScript/);
+        });
+    </script>
+</body>
+
+</html>

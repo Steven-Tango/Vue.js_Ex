@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>v-html使用</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div id="app" >
+			<span v-html="HtmkLabel"></span>
+			<span v-html="link"></span>
+			
+		</div>
+		<script type="text/javascript">
+			new Vue(
+			{
+				el:'#app',
+				data:{
+					HtmkLabel:"<h1>这是用V-html指令编写</h1>",
+					link :'<a href="#">这是个超链接</a>'
+				}
+			}
+			);
+		</script>
+	</body>
+</html>

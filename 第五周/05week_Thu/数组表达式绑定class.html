@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>数组语法</title>
+    <style>
+        .active{
+            color: red;
+        }
+        .text-danger{
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>绑定class属性,采用数组表达式</h1>
+    <div id="app">
+        <div :class="[activeclass,errorclass]">
+            Welcome to nemotec!!直接数组方式
+        </div>
+        <div :class="[isactive ? activeclass : '',errorclass]">
+            Welcome to nemotec!!三元表达式
+        </div>
+        <div :class="[{active:isactive},errorclass]">
+            Welcome to nemotec!!混合使用
+        </div>
+    </div>
+    <script>
+        new Vue(
+            {
+                el:'#app',
+                data:{
+                    isactive:true,
+                    activeclass:'active',
+                    errorclass:'text-danger'
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>
