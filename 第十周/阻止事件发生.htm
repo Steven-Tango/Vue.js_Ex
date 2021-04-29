@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>阻止事件发生</title>
+</head>
+
+<body>
+    <div id="id">
+        <a href="www.baidu.com" @click="handleClick('禁止打开',$event)">打开链接</a>
+    </div>
+    <script>
+        new Vue({
+            el: '#id',
+            methods: {
+                handleClick: function(msg, event) {
+                    event.preventDefault();
+                    window.alert(msg);
+                }
+            },
+        })
+    </script>
+    <br>
+    <div id="box2">
+        <a href="www.cca.xflysim.com" @click="show('Weclome to XFLYSIM!!',$event)">{{name}}</a>
+    </div>
+    <script>
+        new Vue({
+            el: '#box2',
+            data: {
+                name: "XFLY平台"
+            },
+            methods: {
+                show: function(msg, e) {
+                    e.preventDefault(); //特殊变量$event传入方法中，阻止浏览器默认行为
+                    alert(msg);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

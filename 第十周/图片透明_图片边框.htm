@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <img id="img" :src="url" @mouseover=" visable(1) " @mouseout="visable(0.5) ">
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                url: 'img/flower.jpg'
+            },
+            methods: {
+                visable: function(i) {
+                    var img = document.getElementById("img");
+                    if (i == 1) {
+                        img.style.opacity = .5;
+                    } else {
+                        img.style.opacity = 1;
+                    }
+                }
+            },
+        })
+    </script>
+    <br>
+    <div id="box2">
+        <img id="img" :src="url" @mouseover="borderAdd" @mouseout="borderMove">
+    </div>
+    <script>
+        new Vue({
+            el: '#box2',
+            data: {
+                url: 'img/mr.gif'
+            },
+            methods: {
+                borderAdd: function(b) {
+                    b.target.style.border = "1px solid green";
+                },
+                borderMove: function(b) {
+                    b.target.style.border = "none";
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

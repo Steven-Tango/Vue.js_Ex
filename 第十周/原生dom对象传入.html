@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <button @click="show">显示</button> <input type="button" @click="show" value="显示2">
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            methods: {
+                show: function(envet) {
+                    if (event) {
+                        alert("触发事件元素的标签是" + event.target.tagName);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

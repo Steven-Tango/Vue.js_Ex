@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>按钮单击</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click="count++">计数</button>
+        <p>按钮被单击了{{count}}次</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            }
+        })
+    </script>
+    <br>
+    <div id="app1">
+        点击次数:{{count}}
+        <button @click="handleAdd(1)">+1</button>
+        <button @click="handleAdd(10)">+10</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app1',
+            data: {
+                count: 0
+            },
+            methods: {
+                handleAdd: function(count) {
+                    this.count += count; //this指向当前Vue实例app1
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
