@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>话费流量查询</title>
+    <style>
+        body {
+            font-family: 微软雅黑;
+        }
+        
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <h2>查话费查流量</h2>
+        <input type="radio" value="balance" name="search" v-model=" type ">
+        <label for="balance ">查话费</label>
+        <input type="radio" value="traffic" name="search" v-model=" type ">
+        <label for="traffic ">查流量</label>
+        <input type="button" value="查询" v-on:click="check">
+        <p v-if="show ">{{message}}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                type: '',
+                show: false,
+                message: ''
+            },
+            methods: {
+                check: function() {
+                    this.show = true;
+                    //根据选择类型定义查询结果
+                    if (this.type == "balance") {
+                        this.message = '您的话费余额不足10元，请充值!!';
+                    } else if (this.type == "traffic") {
+                        this.message = "您的剩余流量为56B";
+                    } else {
+                        this.message = "请选择你要查询到的类别"
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

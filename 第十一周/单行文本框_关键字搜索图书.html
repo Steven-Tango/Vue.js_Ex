@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 微软雅黑;
+        }
+        
+        .search input {
+            width: 350px;
+            height: 30px;
+        }
+        
+        .item {
+            width: 350px;
+            height: 100px;
+            line-height: 100px;
+            border-bottom: 1px solid #999;
+        }
+        
+        .item img {
+            width: 100px;
+            float: left;
+        }
+        
+        .item span {
+            height: 100px;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="exam">
+        <div class="search">
+            <input type="text" v-model="searchStr" placeholder="请输入搜索内容">
+        </div>
+        <div>
+            <div class="item" v-for="book in results">
+                <img :src="book.image">
+                <span>{{book.bookname}}</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#exam',
+            data: {
+                searchStr: '', //搜索关键字
+                books: [{
+                    bookname: '零基础学JavaScript',
+                    image: 'images/javascript.png'
+                }, {
+                    bookname: '零基础学HTML5+CSS3',
+                    image: 'images/htmlcss.png'
+                }, {
+                    bookname: '零基础学C语言',
+                    image: 'images/c.png'
+                }, {
+                    bookname: 'JavaScript精彩编程200例',
+                    image: 'images/javascript200.png'
+                }, {
+                    bookname: 'Java精彩编程200例',
+                    image: 'images/java200.png'
+                }]
+            },
+            computed: {
+                results: function() {
+                    var books = this.books;
+                    if (this.searchStr == '') {
+                        return books;
+                    }
+                    var searchStr = this.searchStr.trim().toLowerCase(); //搜索关键词去掉空格并转换小写
+                    books = books.filter(function(ele) {
+                        //判断图书名称是否包含搜索关键字
+                        if (ele.bookname.toLowerCase().indexOf(searchStr) != -1) {
+                            return ele;
+                        }
+                    });
+                    return books;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

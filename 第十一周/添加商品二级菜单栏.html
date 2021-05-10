@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>二级菜单栏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        body {
+            font-size: 12px;
+        }
+        
+        .title {
+            font-size: 18px;
+            line-height: 50px;
+            margin-left: 100px;
+        }
+        
+        .one {
+            margin: 10px 0;
+        }
+        
+        .one label {
+            width: 100px;
+            float: left;
+            text-align: right;
+            height: 20px;
+            line-height: 20px;
+        }
+        
+        .one input {
+            border: 1px solid #999;
+            height: 20px;
+        }
+        
+        .two {
+            padding-left: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <form name="form" method="post">
+            <div class="title">
+                添加商品信息
+            </div>
+            <div class="one">
+                <label for="type">所属类别:</label>
+                <select v-on:change="getPtext">
+                    <option v-for="pmenu in menulist" v-bind:value="pmenu.text">
+                        {{pmenu.text}}
+                    </option>
+                </select>
+                <select>
+                    <option v-for="submenu in getSubmenu" v-bind:value="submenu.text">
+                        {{submenu.text}}
+                    </option>
+                </select>
+            </div>
+            <div class="one">
+                <label for="goodsname">商品名称:</label>
+                <input type="text" name="goodsname">
+            </div>
+            <div class="one">
+                <label for="price">会员价:</label>
+                <input type="text" name="price">
+            </div>
+            <div class="one">
+                <label for="number">商品数量:</label>
+                <input type="text" name="number">
+            </div>
+            <div class="two">
+                <input type="submit" value="添加">
+                <input type="reset" value="重置">
+            </div>
+        </form>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#box',
+            data: {
+                ptext: '数码设备',
+                menulist: [{
+                    text: '数码设备',
+                    submenu: [{
+                        text: '数码相机'
+                    }, {
+                        text: '打印机'
+                    }, {
+                        text: '复印机'
+                    }]
+                }, {
+                    text: '家用电器',
+                    submenu: [{
+                        text: '电视机'
+                    }, {
+                        text: '电冰箱'
+                    }, {
+                        text: '洗衣机'
+                    }]
+                }, {
+                    text: '礼品工艺',
+                    submenu: [{
+                        text: '鲜花'
+                    }, {
+                        text: '彩带'
+                    }, {
+                        text: '音乐盒'
+                    }]
+                }]
+            },
+            methods: {
+                getPtext: function(event) { //获取主菜单项
+                    this.ptext = event.target.value;
+                }
+            },
+            computed: { //获取子菜单
+                getSubmenu: function() {
+                    for (var i = 0; i < this.menulist.length; i++) {
+                        if (this.menulist[i].text == this.ptext) {
+                            return this.menulist[i].submenu;
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

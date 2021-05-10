@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <input type="checkbox" value="上网" v-model="checkednames">
+        <label for="net">上网</label>
+        <input type="checkbox" value="旅游" v-model="checkednames">
+        <label for="turism">旅游</label>
+        <input type="checkbox" value="看书" v-model="checkednames">
+        <label for="book">看书</label>
+        <input type="checkbox" value="电影" v-model="checkednames">
+        <label for="movie">电影</label>
+        <input type="checkbox" value="游戏" v-model="checkednames">
+        <label for="game">游戏</label>
+        <p v-if="checked">你的兴趣爱好:{{result}}</p>
+        <p>
+            <button @click="allChecked">全选</button>
+            <button @click="reverseChecked">反选</button>
+            <button @click="noneChecked">全不选</button>
+        </p>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                checked: false,
+                checkednames: [],
+                checkedArr: ["上网", "旅游", "看书", "电影", "游戏"],
+                temArr: []
+            },
+            methods: {
+                allChecked: function() { //全选
+                    this.checkednames = this.checkedArr;
+                },
+                noneChecked: function() { //全不选
+                    this.checkednames = [];
+                },
+                reverseChecked: function() { //反选
+                    this.temArr = [];
+                    for (var i = 0; i < this.checkedArr.length; i++) {
+                        if (!this.checkednames.includes(this.checkedArr[i])) {
+                            this.temArr.push(this.checkedArr[i]);
+                        }
+                    }
+                    this.checkednames = this.temArr;
+                }
+            },
+            computed: {
+                result: function() {
+                    var show = "";
+                    for (var i = 0; i < this.checkednames.length; i++) {
+                        show += this.checkednames[i] + " ";
+                    }
+                    return show;
+                }
+            },
+            watch: {
+                "checkednames": function() {
+                    if (this.checkednames.length > 0) {
+                        this.checked = true;
+                    } else {
+                        this.checked = false;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

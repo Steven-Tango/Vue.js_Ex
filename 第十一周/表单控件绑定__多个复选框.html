@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <p>多复选框</p>
+        <input type="checkbox" v-model="brand" value="OPPO">
+        <label for="OPPO">OPPO</label>
+        <input type="checkbox" v-model="brand" value="华为">
+        <label for="华为">华为</label>
+        <input type="checkbox" v-model="brand" value="小米">
+        <label for="小米">小米</label>
+        <input type="checkbox" v-model="brand" value="三星">
+        <label for="三星">三星</label>
+        <p>你选中的手机品牌是:{{brand}}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                brand: []
+            }
+        })
+    </script>
+</body>
+
+</html>
