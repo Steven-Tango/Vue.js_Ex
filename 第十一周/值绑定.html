@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>单选按钮绑定动态属性</title>
+    </head>
+
+    <body>
+        <div id="box">
+            <input type="radio" :value="sexObj.man" v-model='sex'>
+            <label for="man">男</label>
+            <input type="radio" :value="sexObj.woman" v-model='sex'>
+            <label for="woman">女</label>
+            <p>你的性别:{{sex}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box',
+                data: {
+                    sex: '',
+                    sexObj: { man: '男', woman: '女' }
+                }
+            })
+        </script>
+    </body>
+
+</html>

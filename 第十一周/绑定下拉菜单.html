@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="zh">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-    <title>绑定下拉菜单</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>绑定下拉菜单</title>
+    </head>
 
-<body>
-    <div id="box">
-        <select v-model="type">
-            <option value="">请选择类型</option>
-            <option>手机</option>
-            <option>平板电脑</option>
-            <option>笔记本电脑</option>
-        </select>
-        <p>选择种类：{{type}}</p>
-    </div>
-    <script>
-        new Vue({
-            el: '#box',
-            data: {
-                type: ''
-            }
-        })
-    </script>
-</body>
+    <body>
+        <div id="box">
+            <select v-model="type">
+                <option value="">请选择类型</option>
+                <option>手机</option>
+                <option>平板电脑</option>
+                <option>笔记本电脑</option>
+            </select>
+            <p>选择种类：{{type}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box',
+                data: {
+                    type: ''
+                }
+            })
+        </script>
+
+        <!-- v-bind绑定value 实现动态value -->
+        <div id="box1">
+            <select v-model="answer">
+                <option value="">请选择答案</option>
+                <option v-for="item in items" :value="item.value">{{item.text}}</option>
+            </select>
+            <p>你的答案:{{answer}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box1',
+                data: {
+                    answer: '',
+                    items: [{
+                        text: 'A', value: 'A'
+                    }, {
+                        text: 'B', value: 'B'
+                    }, {
+                        text: 'C', value: 'C'
+                    }, {
+                        text: 'D', value: 'D'
+                    }]
+                }
+            })
+        </script>
+
+        <!-- 下拉列表多选 -->
+        <div id="box2">
+            <p>请选择喜欢电影类型</p>
+            <select v-model="filmType" multiple="multiple" size="6">
+                <option>爱情片</option>
+                <option>动作片</option>
+                <option>武侠片</option>
+                <option>科幻片</option>
+                <option>恐怖片</option>
+                <option>喜剧片</option>
+            </select>
+            <p>你选择的类型是:{{filmType}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box2',
+                data: {
+                    filmType: []
+                }
+            });
+        </script>
+    </body>
 
 </html>

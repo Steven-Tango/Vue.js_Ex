@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>3级联动</title>
+</head>
+
+<body>
+    <div id="box">
+        <select v-model="province">
+                <option value="">请选择</option>
+                <option v-for="item in provinces" v-bind:value="item">{{item}}}}</option>
+            </select>
+        <select v-model="city">
+                <option value="">请选择</option>
+                <option v-for="item in citys" v-bind:value="item">{{item}}}}</option>
+            </select>
+        <select v-model="district">
+                <option value="">请选择</option>
+                <option v-for="item in districts" v-bind:value="item">{{item}}}}</option>
+            </select>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                province: '', //省份
+                city: '', //城市
+                district: '', //地区
+                addressData: {
+                    '黑龙江省': {
+                        '哈尔滨市': {
+                            "道里区": {},
+                            "南岗区": {}
+                        },
+                        '齐齐哈尔市': {
+                            "龙沙区": {},
+                            "建华区": {}
+                        }
+                    },
+                    '吉林省': {
+                        '长春市': {
+                            "朝阳区": {},
+                            "南关区": {}
+                        },
+                        '吉林市': {
+                            "船营区": {},
+                            "龙潭区": {}
+                        }
+                    },
+                    '辽宁省': {
+                        '沈阳市': {
+                            "和平区": {},
+                            "沈河区": {}
+                        },
+                        '大连市': {
+                            "中山区": {},
+                            "金州区": {}
+                        }
+                    }
+                }
+            },
+            watch: {
+                province: function(newValue, oldValue) {
+                    if (newValue !== oldValue) {
+                        this.city = ''; //如果选择了不同省份，就清空城市下拉菜单
+                    }
+                },
+                city: function(newValue, oldValue) {
+                    if (newValue !== oldValue) {
+                        this.district = ''; //如果选择了不同城市，就清空地区下拉菜单
+                    }
+                }
+            },
+            computed: {
+                provinces: function() { //获取省份数组
+                    if (!this.addressData) {
+                        return;
+                    }
+                    var pArr = [];
+                    for (var key in this.addressData) { //如果addressData不为空，遍历key值并添加到pArr数组中
+                        pArr.push(key);
+                    }
+                    return pArr;
+                },
+                citys: function() { //获取所选择的省份对应的城市数组
+                    if (!this.addressData || !this.province) {
+                        return;
+                    }
+                    var cArr = [];
+                    for (var key in this.addressData[this.province]) {
+                        cArr.push(key);
+                    }
+                    return cArr;
+                },
+                districts: function() { //获取所选择的城市对应的地区数组
+                    if (!this.addressData || !this.city) {
+                        return;
+                    }
+                    var dArr = [];
+                    for (var key in this.addressData[this.province][this.city]) {
+                        dArr.push(key);
+                    }
+                    return dArr;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

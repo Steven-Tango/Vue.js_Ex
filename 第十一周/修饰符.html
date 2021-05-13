@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>修饰符使用</title>
+    </head>
+
+    <body>
+        <!-- lazy修饰符  lazy:表示当输入内容后，不会立即显示，回车才显示(相当于change事件)-->
+        <div id="box1">
+            <input type="text" v-model.lazy="message" placeholder="单击进行编辑">
+            <p>当前输入的值:{{message}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box1',
+                data: {
+                    message: ''
+                }
+            })
+        </script>
+
+        <!-- number 修饰符 number:将输入内容转换数值类型 -->
+        <div id="box2">
+            <input type="text" v-model.number="message" placeholder="单击进行编辑">
+            <p>当前输入的值:{{message}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box2',
+                data: {
+                    message: ''
+                }
+            })
+        </script>
+
+        <!-- trim修饰符 trim:过滤字符串首位空格-->
+        <div id="box3">
+            <input type="text" v-model.trim="message" placeholder="单击进行编辑">
+            <p>当前输入的值:{{message}}</p>
+        </div>
+        <script>
+            new Vue({
+                el: '#box3',
+                data: {
+                    message: ''
+                }
+            })
+        </script>
+    </body>
+
+</html>

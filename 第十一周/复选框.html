@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>复选框绑定值</title>
+    </head>
+
+    <body>
+        <div id="box">
+            <input type="checkbox" :true-value="yes" :false-value="no" v-model="togle">
+            <label for="checkbox">当前状态:{{togle}}</label>
+        </div>
+        <script>
+            new Vue({
+                el: '#box',
+                data: {
+                    togle: '',
+                    yes: 'selected',
+                    no: 'cancle'
+                }
+            })
+        </script>
+
+
+        <!-- 数组绑定 -->
+        <div id="box2">
+            <p>多个复选框</p>
+            <input type="checkbox" :value="brands[0]" v-model="brand">
+            <label>{{brands[0]}}</label>
+            <input type="checkbox" :value="brands[1]" v-model="brand">
+            <label>{{brands[1]}}</label>
+            <input type="checkbox" :value="brands[2]" v-model="brand">
+            <label>{{brands[2]}}</label>
+            <p>选择手机品牌：{{brand.join('、')}}</p>
+        </div>
+        <script>
+            new Vue({
+                el:'#box2',
+                data:{
+                    brands:['OPPO','MI','HUAWEI'],
+                    brand:[] 
+                }
+            })
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+        <title>下拉菜单绑定值</title>
+    </head>
+
+    <body>
+        <div id="box">
+            <span>请选择:</span>
+            <select v-model="num">
+                <option :value="nums[0]">{{nums[0]}}</option>
+                <option :value="nums[1]">{{nums[1]}}</option>
+                <option :value="nums[2]">{{nums[2]}}</option>
+                <option :value="nums[3]">{{nums[3]}}</option>
+            </select>
+            <p>选择的数字:{{num}}</p>
+        </div>
+        <script>
+            new Vue({
+                el:'#box',
+                data:{
+                    num:12,
+                    nums:[12,34,45,56,67]
+                }
+            })
+        </script>
+    </body>
+
+</html>
