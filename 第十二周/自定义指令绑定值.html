@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>自定义指令绑定值</title>
+
+</head>
+
+<body>
+    <!-- 绑定数字常量 -->
+    <div id="box">
+        <p v-set-position="50">越努力越幸运</p>
+    </div>
+    <br>
+    <script>
+        Vue.directive('set-position', function(el, binding) {
+            el.style.position = 'fixed'; //设置为固定定位
+            el.style.left = binding.value + 'px'; //将绑定的值赋给left属性
+        })
+        var vm = new Vue({
+            el: '#box'
+        })
+    </script>
+    <br>
+    <!-- 绑定字符串常量 -->
+    <div id="box2">
+        <p v-set-color="'#bfc'">天才出于勤奋</p>
+    </div>
+    <script>
+        Vue.directive('set-color', function(el, binding) {
+            el.style.color = binding.value; //将绑定的元素
+        })
+        new Vue({
+            el: '#box2'
+        })
+    </script>
+</body>
+
+</html>

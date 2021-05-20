@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>拖动元素</title>
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        <img src="img/banner.jpg" v-move>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            directives: {
+                move: function(el) {
+                    //按下鼠标事件
+                    el.onmousedown = function(e) {
+                            //img离浏览器做边缘和上边缘的距离
+                            var initX = el.offsetLeft;
+                            var initY = el.offsetTop;
+
+                            //鼠标按下时离图片的水平和垂直距离
+                            var offsetX = e.clientX - initX;
+                            var offsetY = e.clientY - initY;
+
+                            //移动鼠标
+                            document.onmousemove = function(e) {
+                                //x、y代表鼠标拖动图片移动的水平和垂直距离
+                                var x = e.clientX - offsetX;
+                                var y = e.clientY - offsetY;
+                                //maxX、maxY代表图片在页面中可以移动的水平和垂直距离
+                                var maxX = document.documentElement.clientWidth - el.offsetWidth;
+                                var maxY = document.documentElement.clientHeight - el.offsetHeight;
+                                if (x <= 0) x = 0;
+                                if (y <= 0) y = 0;
+                                if (x >= maxX) x = maxX;
+                                if (y >= maxY) y = maxY;
+                                el.style.left = x + 'px';
+                                el.style.top = y + 'px';
+                                return false;
+                            }
+                        }
+                        //松开鼠标
+                    document.onmouseup = function() {
+                        document.onmousemove = null;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

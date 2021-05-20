@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>指令注册</title>
+
+</head>
+
+<body>
+    <!-- 注册全局指令 -->
+    <div id="box">
+        <input v-focus>
+    </div>
+    <script type="text/javascript">
+        Vue.dir / ective('focus', {
+            inserted(el) {
+                el.focus(); //当被绑定的元素插入DOM数中时，使元素获得焦点
+            }
+        })
+        var vm = new Vue({
+            el: '#box'
+
+        })
+    </script>
+    <br>
+    <!-- 注册局部指令 -->
+    <div id="box2">
+        <span v-add-border="border">
+            坚持不懈
+        </span>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#box2',
+            data: {
+                border: '1px solid #FF00FF'
+            },
+            directives: {
+                addBorder: {
+                    inserted: function(el, binding) { //el是指令所绑定的元素，binding是一个对象
+                        el.style.border = binding.value; //把对象绑定的指令的值赋给el元素的border样式
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

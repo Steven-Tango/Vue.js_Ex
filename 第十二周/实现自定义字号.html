@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>自定义字体大小</title>
+
+</head>
+
+<body>
+    <div id="box">
+        <label>选择文字大小:</label>
+        <select v-model="size">
+            <option value="20px">20px</option>
+            <option value="30px">30px</option>
+            <option value="40px">40px</option>
+            <option value="50px">50px</option>
+            <option value="60px">60px</option>
+        </select>
+        <p v-font-size="size">天生我材必有用</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                size: '20px'
+            },
+            directives: {
+                fontSize: function(el, binding) {
+                    el.style.fontSize = binding.value; //把对象绑定的值赋格p元素的fontSize属性
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
