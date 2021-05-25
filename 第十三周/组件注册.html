@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>注册组件使用</title>
+</head>
+
+<body>
+    <!-- 注册全局组件 -->
+
+    <div id="box">
+        <my-compoent></my-compoent>
+    </div>
+    <script>
+        /* (1)创建组件构造器 */
+        var myCompoent = Vue.extend({
+            template: '<h2>注册全局组件</h2>'
+        });
+        /* (2)注册全局组件 */
+        Vue.component('my-compoent', myCompoent)
+
+        /* 写法二 
+         Vue.component('my-compoent', {
+             template: '<h2>直接传入选项对象注册全局组件</h2>'
+         }) 
+         */
+
+
+        new Vue({
+            el: '#box'
+        })
+    </script>
+
+
+    <div id="box2">
+        <my-compoent></my-compoent>
+    </div>
+    <script>
+        Vue.component('my-compoent', {
+            template: '<div>\
+                <h2>全局组件</h2>\
+                <span>全局组件可以在所有实例中使用</span>\
+                </div>'
+        });
+        new Vue({
+            el: '#box2'
+        })
+    </script>
+
+
+    <!-- 组件data选项必须是一个函数，而不是一个对象 -->
+    <div id="box3">
+        <button-count></button-count>
+        <button-count></button-count>
+        <button-count></button-count>
+    </div>
+    <script>
+        //注册全局组件
+        Vue.component('button-count', {
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">单击了{{count}}次</button>'
+        })
+        new Vue({
+            el: '#box3'
+        })
+    </script>
+
+    <!-- 局部注册 -->
+    <div id="ex">
+        <my-compoent></my-compoent>
+    </div>
+    <script>
+        var Child = {
+            template: '<h2>注册局部组件</h2>'
+        }
+        new Vue({
+            el: '#ex',
+            components: {
+                'my-compoent': Child //使用局部注册组件
+            }
+        })
+    </script>
+    <br>
+    <!-- 局部注册——子组件在父组件使用 -->
+    <div id="ex2">
+        <parent-compoent></parent-compoent>>
+    </div>
+    <script>
+        var Children = {
+            template: '<h2>这是子组件</h2>'
+        }
+        var Parent = {
+            template: '<div>\
+                <h2>这是父组件</h2>\
+                <children-compoent></children-compoent>\
+                </div>',
+            components: {
+                'children-compoent': Children
+            }
+        }
+        new Vue({
+            el: '#ex2',
+            components: {
+                'parent-compoent': Parent
+            }
+        })
+    </script>
+</body>
+
+</html>

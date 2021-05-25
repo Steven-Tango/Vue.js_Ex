@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>父子组件数据传递</title>
+</head>
+
+<body>
+    <div id="box">
+        <my-compoent message="我们学习Vue.js"></my-compoent>
+    </div>
+    <script>
+        Vue.component('my-compoent', {
+            props: ['message'],
+            template: '<p>{{message}}</p>'
+        })
+        new Vue({
+            el: '#box'
+        })
+    </script>
+</body>
+
+</html>
