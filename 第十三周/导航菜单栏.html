@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>页面导航菜单</title>
+    <style>
+        body {
+            font-family: 微软雅黑
+        }
+
+        .nav {
+            display: inline-block;
+            background-color: #4198c0;
+            margin: 20px;
+        }
+
+        span {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+            background-color: transparent;
+            text-align: center;
+            color: #FFFFFF
+        }
+
+        .active {
+            background-color: #e36885;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <my-menu @select-item="onSelectItem" :flag="flag"></my-menu>
+    </div>
+    <script>
+        Vue.component('my-menu', {
+            props: ['flag'],
+            template: '<div class="nav">\
+                            <span @click="select(1)" :class="{active:flag===1}">音乐</span>\
+                            <span @click="select(2)" :class="{active:flag===2}">体育</span>\
+                            <span @click="select(3)" :class="{active:flag===3}">影视</span>\
+                            <span @click="select(4)" :class="{active:flag===4}">图片</span>\
+                        </div>',
+            methods: {
+                select(value) {
+                    //通过$emit方法触发自定义的select-item事件，并传递value值给父组件
+                    this.$emit('select-item', value);
+                }
+            }
+        })
+
+        new Vue({
+            el: '#box',
+            data: {
+                flag: 1
+            },
+            methods: {
+                onSelectItem:function(value){
+                    this.flag=value;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
