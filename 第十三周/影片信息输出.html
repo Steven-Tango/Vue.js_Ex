@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>影片信息输出</title>
+    <style>
+        body {
+            font-family: "微软雅黑";
+        }
+        
+        img {
+            width: 240px;
+            height: 172px;
+        }
+        
+        .move_name {
+            padding-left: 10px;
+            font-size: 18px;
+            color: #333;
+            margin-top: 8px;
+        }
+        
+        .move_des {
+            padding-left: 10px;
+            font-size: 14px;
+            color: #7a7a7a;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <my-movie :img="imgUrl" :name="name" :description="description"></my-movie>
+    </div>
+    <script>
+        Vue.component('my-movie', {
+            props: ['img', 'name', 'description'],
+            template: '<div>\
+                <img :src="img">\
+                <div class="move_name">{{name}}</div>\
+                <div class="move_des">{{description}}</div>\
+                </div>'
+        })
+        new Vue({
+            el: '#box',
+            data: {
+                imgUrl: 'img/3.jpg',
+                name: '我是传奇',
+                description: '末世科幻动作电影'
+            }
+        })
+    </script>
+</body>
+
+</html>
