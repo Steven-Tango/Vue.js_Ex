@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" charset="uft-8" type="text/javascript"></script>
+    <title>文字放大</title>
+    <style>
+        body {
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div v-bind:style="{fontSize:fontSize+'px'}">
+            <my-font v-bind:text="text" v-on:enlarge="fontSize+=2"></my-font>
+            <!-- 父组件通过v-on监听子组件实例的自定义的enlar事件 -->
+        </div>
+
+    </div>
+    <script>
+        Vue.component('my-font', {
+            props: ['text'],
+            template: '<div>\
+                            <button v-on:click="action">放大按钮</button>\
+                            <p>{{text}}</p>\
+                        </div>',
+            methods: {
+                action: function () {
+                    this.$emit('enlarge');//通过调用$.emit()方法，触发自定义的enlarge事件
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                text:'自定义的enlar事件的监听和触发',
+                fontSize:16
+            }
+        })
+    </script>
+</body>
+
+</html>
