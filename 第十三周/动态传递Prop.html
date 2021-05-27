@@ -16,14 +16,60 @@
     <script>
         //注册全局组件
         Vue.component('my-compoent', {
-                props: ['boxoffice'], //传递prop票房
-                template: '<p>该电影票房已经达到了{{boxoffice}}亿元</p>'
-            })
-            //创建Vue实例
+            props: ['boxoffice'], //传递prop票房
+            template: '<p>该电影票房已经达到了{{boxoffice}}亿元</p>'
+        })
+        //创建Vue实例
         new Vue({
             el: '#box',
             data: {
                 boxoffice: 21
+            }
+        })
+    </script>
+
+
+    <br>
+    <!-- 数组传递 -->
+    <div id="box1">
+        <my-item :list="type">
+
+        </my-item>
+    </div>
+    <script>
+        Vue.component('my-item', {
+            props: ['list'],
+            template: '<ol>\
+                <li v-for="item in list">{{item}}</li>\
+            </ol>'
+        })
+        new Vue({
+            el: '#box1',
+            data: {
+                type: ['HTML', 'CSS', 'JavaScript']
+            }
+        })
+    </script>
+
+
+    <br>
+    <!-- 对象传递法 -->
+    <div id="box2">
+        <my-shop v-bind="shop"></my-shop>
+    </div>
+    <script>
+        Vue.component('my-shop', {
+            props: ['name', 'price', 'number'],
+            template: '<div>\
+                            <div>名称:{{name}}</div>\
+                            <div>价格:{{price}}</div>\
+                            <div>数量:{{number}}</div>\
+                        </div>'
+        })
+        new Vue({
+            el:'#box2',
+            data:{
+                shop:{name:'小米11Ultra',price:5999,nubmer:2}
             }
         })
     </script>
