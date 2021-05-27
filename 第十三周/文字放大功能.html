@@ -17,7 +17,7 @@
 <body>
     <div id="box">
         <div v-bind:style="{fontSize:fontSize+'px'}">
-            <my-font v-bind:text="text" v-on:enlarge="fontSize+=2"></my-font>
+            <my-font v-bind:text="text" v-on:enlarge="fontSize+=$event"></my-font>
             <!-- 父组件通过v-on监听子组件实例的自定义的enlar事件 -->
         </div>
 
@@ -26,12 +26,12 @@
         Vue.component('my-font', {
             props: ['text'],
             template: '<div>\
-                            <button v-on:click="action">放大按钮</button>\
+                            <button v-on:click="action(5)">放大按钮</button>\
                             <p>{{text}}</p>\
                         </div>',
             methods: {
-                action: function () {
-                    this.$emit('enlarge');//通过调用$.emit()方法，触发自定义的enlarge事件
+                action: function (value) {
+                    this.$emit('enlarge',value);//通过调用$.emit()方法，触发自定义的enlarge事件,并传递参数
                 }
             }
         })
