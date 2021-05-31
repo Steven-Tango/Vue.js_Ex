@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <title>旋转动画效果综合使用</title>
+    <style>
+        p {
+            font: 30px;
+            margin: 50px auto;
+            font-weight: 500;
+            color: #f3626f;
+        }
+
+        @keyframes scaling {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                animation: rotateZ(0) scale(1);
+            }
+
+            50% {
+                animation: rotateZ(360deg) scale(0.5);
+            }
+
+            100% {
+                animation: rotateZ(720deg) scale(0);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        <button v-on:click="show=!show">切换显示</button>
+        <transition v-on:enter="enter" v-on:leave="leave" v-on:after-leave="afterLeave">
+            <p v-if="show">勤能补拙</p>
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                show: false
+            },
+            methods: {
+                enter: function (el, done) {
+                    el.style.opacity = 1;
+                    /* 实现缩放效果 */
+                    el.style.animation = 'scaling 1s';
+                    done();
+                },
+                leave: function (el, done) {
+                    /* 实现旋转效果 */
+                    el.style.animation = 'rotate 2s linear';
+                    setTimeout(function () {
+                        done();
+                    }, 1900)
+                },
+                afterLeave: function (el, done) {
+                    el.style.opacity = 0;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
