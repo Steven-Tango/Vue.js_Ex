@@ -31,15 +31,15 @@
 
         @keyframes rotate {
             0% {
-                animation: rotateZ(0) scale(1);
+                transform: rotateZ(0) scale(1);
             }
 
             50% {
-                animation: rotateZ(360deg) scale(0.5);
+                transform: rotateZ(360deg) scale(0.5);
             }
 
             100% {
-                animation: rotateZ(720deg) scale(0);
+                transform: rotateZ(720deg) scale(0);
             }
         }
     </style>
@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <div id="box">
+    <div id="box" align="center">
         <button v-on:click="show=!show">切换显示</button>
         <transition v-on:enter="enter" v-on:leave="leave" v-on:after-leave="afterLeave">
             <p v-if="show">勤能补拙</p>
